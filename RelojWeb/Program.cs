@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using RelojWeb.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Add Connection String
+builder.Services.AddDbContext<RelojContext>(options => {
+
+    options.UseSqlite(builder.Configuration.GetConnectionString("CadenaConexion"));
+});
+
+
 
 var app = builder.Build();
 
